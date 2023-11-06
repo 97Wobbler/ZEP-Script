@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Get Screen Size with JavaScript</title>
+</head>
+
+<body style="background-color: transparent;">
+    <script>
+        var screenWidth = window.screen.width;
+        var screenHeight = window.screen.height;
+
+        function sendWindowSize() {
+            window.parent.postMessage({ screenWidth, screenHeight }, '*');
+        }
+
+        window.addEventListener('message', function (e) {
+            if (e.data.type == "initialize") sendWindowSize();
+        });
+    </script>
+</body>
+
+</html>
